@@ -10,3 +10,8 @@ nvc++ -mp=gpu -gpu=cc80 -Ofast laplace2d.cpp -o laplace -Minfo=accel,mp
 
 srun -p gpu --gres=gpu:1 --ntasks=1 --time=00:05:00 --mem=40G ./laplace
 
+
+module load nvhpc
+module load cuda
+nvc++ cfd_euler.cpp -mp=gpu -gpu=cc80 -Ofast -o cfd_euler -Minfo=accel,mp
+srun -p gpu --gres=gpu:1 --ntasks=1 --mem=40G --time=00:10:00 ./cfd_euler
